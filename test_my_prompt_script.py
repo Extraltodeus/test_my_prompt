@@ -74,4 +74,3 @@ def run(p,neg_pos,font_size):
         if opts.grid_save:
             images.save_image(grid, p.outpath_grids, "grid", initial_seed, initial_prompt, opts.grid_format, info=proc.info, short_filename=not opts.grid_extended_filename, p=p, grid=True)
     return proc
-run(p)
