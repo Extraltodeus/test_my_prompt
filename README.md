@@ -32,6 +32,7 @@ Of course you can do it with more parameters.
 neg : "ugly, lowres, black and white, grascale, low quality, missing limbs, hands, painting, anime, 3d render, (wide angle:1.2), (naked:0.8)"
 
 ![grid-0012-2847822-Euler a-32-7 5-ac3abe1d-20221106213735](https://user-images.githubusercontent.com/15731540/200350301-58ef3664-7062-4ad4-b43b-bb1d9adaeab8.png)
+<sub>It seems obvious that "dress" and "sunset" have a negative effect on that prompt.</sub>
 
 You can also test your negative prompt :
 
