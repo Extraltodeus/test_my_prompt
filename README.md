@@ -8,7 +8,8 @@ WELL now you don't need any courage as this script has been MADE FOR YOU!
 It generate as many images as their are words in your prompt (you can select the separator of course).
 
 
-![image](https://user-images.githubusercontent.com/15731540/200347996-de6358b7-0fd5-45aa-8607-95703b31ebff.png)
+![image](https://user-images.githubusercontent.com/15731540/200430459-88ed61b7-fead-40d6-b339-ab65bbaae685.png)
+
 
 <sub>*A most exquisite menu*</sub>
 
