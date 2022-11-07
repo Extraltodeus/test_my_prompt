@@ -1,4 +1,41 @@
-Test my prompt!
+# Test my prompt!
+
+Have you ever used a very long prompt full of words that you are not sure have any actual impact on your image? Did you lose the courage to try to remove them one by one to test if their effects are worthy of your pwescious GPU?
+
+WELL now you don't need any courage as this script has been MADE FOR YOU!
+
+It generate as many images as their are words in your prompt (you can select the separator of course).
+
+
 ![image](https://user-images.githubusercontent.com/15731540/200347996-de6358b7-0fd5-45aa-8607-95703b31ebff.png)
 
+<sub>*A most exquisite menu*</sub>
+
+Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or the will be tested together.
+
+## Examples
+
+Here the prompt is simply : **"banana, on fire, snow"** and so as you can see it has generated each image without each description in it.
+
+![grid-0020-2554476-Euler a-24-12-81761151-20221107152306](https://user-images.githubusercontent.com/15731540/200349119-e45d3cfb-39f0-4999-a8f0-4671a6393824.png)
+<sub>See how sad things are with no banana</sub>
+
+Of course you can do it with more parameters.
+
+"big titties goth gf, dress, swimsuit, beach, sunset, cloudy weather, iso100"
+
+neg : "ugly, lowres, black and white, grascale, low quality, missing limbs, hands, painting, anime, 3d render, (wide angle:1.2), (naked:0.8)"
+
+![grid-0012-2847822-Euler a-32-7 5-ac3abe1d-20221106213735](https://user-images.githubusercontent.com/15731540/200350301-58ef3664-7062-4ad4-b43b-bb1d9adaeab8.png)
+
+You can also test your negative prompt :
+
+![grid-0013-2847822 0-Euler a-32-7 5-ac3abe1d-20221106213903](https://user-images.githubusercontent.com/15731540/200350376-83f25611-1648-451f-8316-0ef3f2cc5fd1.png)
+
+Another example :
+
+![grid-0023-3893916328 0-Euler a-32-7 5-ac3abe1d-20221106223202](https://user-images.githubusercontent.com/15731540/200350566-c2b548c4-c66f-4e4a-a2c1-7e75a6400092.png)
+
+Something very curious : removing "AUTOMATIC1111" simply removes the Gigachad from the picture.
+![grid-0002-4184123397 0-Euler a-42-12 5-ac3abe1d-20221107150635](https://user-images.githubusercontent.com/15731540/200350663-13fe236d-c81f-4e0b-a009-35c229c0b8a5.png)
 
