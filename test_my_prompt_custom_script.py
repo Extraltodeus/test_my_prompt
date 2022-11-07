@@ -77,6 +77,6 @@ class Script(scripts.Script):
         unwanted_grid_because_of_img_count = len(output_images) < 2 and opts.grid_only_if_multiple
         if ((opts.return_grid or opts.grid_save) and not p.do_not_save_grid and not unwanted_grid_because_of_img_count) or always_grid:
             grid = images.image_grid(output_images)
-            if opts.grid_save:
+            if opts.grid_save or always_grid:
                 images.save_image(grid, p.outpath_grids, "grid", initial_seed, initial_prompt, opts.grid_format, info=proc.info, short_filename=not opts.grid_extended_filename, p=p, grid=True)
         return proc
