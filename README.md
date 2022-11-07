@@ -1,3 +1,4 @@
+Made as a script for the [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) repository.
 # Test my prompt!
 
 Have you ever used a very long prompt full of words that you are not sure have any actual impact on your image? Did you lose the courage to try to remove them one by one to test if their effects are worthy of your pwescious GPU?
@@ -12,6 +13,10 @@ It generate as many images as their are words in your prompt (you can select the
 <sub>*A most exquisite menu*</sub>
 
 Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or the will be tested together.
+
+## Installation
+
+Copy this file in your /scripts folder.
 
 ## Examples
 
