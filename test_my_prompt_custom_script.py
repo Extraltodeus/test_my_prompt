@@ -12,10 +12,11 @@ class Script(scripts.Script):
 
     def ui(self, is_img2img):
         neg_pos = gr.Dropdown(label="Test negative or positive", choices=["Positive","Negative"], value="Positive")
+        separator = gr.Textbox(label="Separator used", lines=1, value=", ")
         font_size = gr.Slider(minimum=12, maximum=64, step=1, label='Font size', value=32)
-        return [neg_pos,font_size]
+        return [neg_pos,separator,font_size]
 
-    def run(self, p,neg_pos, font_size):
+    def run(self, p,neg_pos,separator,font_size):
         def write_on_image(img, msg):
             ix,iy = img.size
             draw = ImageDraw.Draw(img)
@@ -44,12 +45,12 @@ class Script(scripts.Script):
             initial_prompt =  p.negative_prompt
             prompt_array = p.negative_prompt
 
-        prompt_array = prompt_array.split(", ")
+        prompt_array = prompt_array.split(separator)
         print("total images :", len(prompt_array))
         for g in range(len(prompt_array)+1):
             f = g-1
             if f >= 0:
-                new_prompt =  ', '.join([prompt_array[x] for x in range(len(prompt_array)) if x is not f])
+                new_prompt =  separator.join([prompt_array[x] for x in range(len(prompt_array)) if x is not f])
             else:
                 new_prompt = initial_prompt
 
