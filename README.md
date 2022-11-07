@@ -12,7 +12,7 @@ It generate as many images as their are words in your prompt (you can select the
 
 <sub>*A most exquisite menu*</sub>
 
-Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or the will be tested together.
+Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or they will be tested together.
 
 ## Installation
 
@@ -44,4 +44,4 @@ Another example :
 
 Something very curious : removing "AUTOMATIC1111" simply removes the Gigachad from the picture.
 ![grid-0002-4184123397 0-Euler a-42-12 5-ac3abe1d-20221107150635](https://user-images.githubusercontent.com/15731540/200350663-13fe236d-c81f-4e0b-a009-35c229c0b8a5.png)
-<sub>This may or may not have been edited with pain.</sub>
+<sub>This may or may not have been edited.</sub>
