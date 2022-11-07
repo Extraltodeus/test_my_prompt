@@ -5,7 +5,7 @@ Have you ever used a very long prompt full of words that you are not sure have a
 
 WELL now you don't need any courage as this script has been MADE FOR YOU!
 
-It generate as many images as their are words in your prompt (you can select the separator of course).
+It generate as many images as there are words in your prompt (you can select the separator of course).
 
 
 ![image](https://user-images.githubusercontent.com/15731540/200430459-88ed61b7-fead-40d6-b339-ab65bbaae685.png)
