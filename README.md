@@ -44,4 +44,4 @@ Another example :
 
 Something very curious : removing "AUTOMATIC1111" simply removes the Gigachad from the picture.
 ![grid-0002-4184123397 0-Euler a-42-12 5-ac3abe1d-20221107150635](https://user-images.githubusercontent.com/15731540/200350663-13fe236d-c81f-4e0b-a009-35c229c0b8a5.png)
-
+<sub>This may or may not have been edited with pain.</sub>
