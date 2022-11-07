@@ -67,7 +67,7 @@ class Script(scripts.Script):
             proc = process_images(p)
 
             if f >= 0:
-                proc.images[0] = write_on_image(proc.images[0], prompt_array[f])
+                proc.images[0] = write_on_image(proc.images[0], "no "+prompt_array[f])
             else:
                 proc.images[0] = write_on_image(proc.images[0], "full prompt")
 
