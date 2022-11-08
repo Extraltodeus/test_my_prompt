@@ -13,7 +13,7 @@ It generate as many images as there are words in your prompt (you can select the
 
 <sub>*A most exquisite menu*</sub>
 
-Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or they will be tested together.
+💥Note : the separator must be the same as the one you use. The default is ", " including the space. So make sure that each and every description in your prompt is separated the same way or they will be tested together. 💥 
 
 ## Installation
 
