@@ -35,7 +35,7 @@ class Script(scripts.Script):
             draw.text((int((ix-tx[2])/2),text_height), msg,(255,255,255),font=font)
             return img
 
-        output_images = []
+
         p.do_not_save_samples = True
         initial_seed = p.seed
         if initial_seed == -1:
@@ -63,20 +63,24 @@ class Script(scripts.Script):
             else:
                 p.negative_prompt = new_prompt
             p.seed = initial_seed
-
-            proc = process_images(p)
-
+            if g == 0:
+                proc = process_images(p)
+            else:
+                appendimages = process_images(p)
+                proc.images.insert(0,appendimages.images[0])
+                proc.infotexts.insert(0,appendimages.infotexts[0])
             if f >= 0:
                 proc.images[0] = write_on_image(proc.images[0], "no "+prompt_array[f])
             else:
                 proc.images[0] = write_on_image(proc.images[0], "full prompt")
 
-            output_images.append(proc.images[0])
             images.save_image(proc.images[0], p.outpath_samples, "", proc.seed, proc.prompt, opts.samples_format, info= proc.info, p=p)
 
-        unwanted_grid_because_of_img_count = len(output_images) < 2 and opts.grid_only_if_multiple
+        unwanted_grid_because_of_img_count = len(proc.images) < 2 and opts.grid_only_if_multiple
         if ((opts.return_grid or opts.grid_save) and not p.do_not_save_grid and not unwanted_grid_because_of_img_count) or always_grid:
-            grid = images.image_grid(output_images)
+            grid = images.image_grid(proc.images)
+            proc.images.insert(0,grid)
+            proc.infotexts.insert(0, proc.infotexts[-1])
             if opts.grid_save or always_grid:
                 images.save_image(grid, p.outpath_grids, "grid", initial_seed, initial_prompt, opts.grid_format, info=proc.info, short_filename=not opts.grid_extended_filename, p=p, grid=True)
         return proc
