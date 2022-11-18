@@ -17,7 +17,7 @@ It generate as many images as there are words in your prompt (you can select the
 
 ## Installation
 
-Copy this file in your /scripts folder.
+Copy the .py file in your /scripts folder or the folder of this repo in your extension folder.
 
 ## Examples
 
