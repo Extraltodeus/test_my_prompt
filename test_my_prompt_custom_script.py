@@ -35,7 +35,7 @@ class Script(scripts.Script):
             draw.text((int((ix-tx[2])/2),text_height), msg,(255,255,255),font=font)
             return img
 
-        #output_images = []
+
         p.do_not_save_samples = True
         initial_seed = p.seed
         if initial_seed == -1:
