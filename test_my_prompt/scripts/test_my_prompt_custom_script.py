@@ -47,7 +47,6 @@ class Script(scripts.Script):
 
 
         p.do_not_save_samples = True
-        grid_flags = self.grid_options_mapping[grid_option]
         initial_seed = p.seed
         if initial_seed == -1:
             initial_seed = randint(1000000,9999999)
@@ -88,6 +87,7 @@ class Script(scripts.Script):
             if opts.samples_save:
                 images.save_image(proc.images[0], p.outpath_samples, "", proc.seed, proc.prompt, opts.samples_format, info= proc.info, p=p)
 
+        grid_flags = self.grid_options_mapping[grid_option]
         unwanted_grid_because_of_img_count = len(proc.images) < 2 and opts.grid_only_if_multiple
         if ((opts.return_grid or opts.grid_save) and not p.do_not_save_grid and not grid_flags.never_grid and not unwanted_grid_because_of_img_count) or grid_flags.always_grid:
             grid = images.image_grid(proc.images)
