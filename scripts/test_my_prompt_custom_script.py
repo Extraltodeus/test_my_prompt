@@ -1,7 +1,7 @@
 from modules.shared import opts, cmd_opts, state
 from modules.processing import Processed, StableDiffusionProcessingImg2Img, process_images, images
 from PIL import Image, ImageFont, ImageDraw, ImageOps
-from fonts.ttf import Roboto
+from modules.paths_internal import roboto_ttf_file
 import modules.scripts as scripts
 import gradio as gr
 from collections import namedtuple
@@ -22,7 +22,7 @@ class Script(scripts.Script):
 
     def ui(self, is_img2img):
         neg_pos = gr.Dropdown(label="Test negative or positive", choices=["Positive","Negative"], value="Positive")
-        skip_x_first = gr.Slider(minimum=0, maximum=32, step=1, label='Skip X first words', value=0)
+        skip_x_first = gr.Slider(minimum=0, maximum=128, step=1, label='Skip X first words', value=0)
         separator = gr.Textbox(label="Separator used", lines=1, value=", ")
         grid_option = gr.Radio(choices=list(self.grid_options_mapping.keys()), label='Grid generation', value=self.default_grid_opt)
         font_size = gr.Slider(minimum=12, maximum=64, step=1, label='Font size', value=32)
@@ -35,7 +35,7 @@ class Script(scripts.Script):
             margin=2
             fontsize=font_size
             draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype(Roboto, fontsize)
+            font = ImageFont.truetype(roboto_ttf_file, fontsize)
             text_height=iy-60
             tx = draw.textbbox((0,0),msg,font)
             draw.text((int((ix-tx[2])/2),text_height+margin),msg,(0,0,0),font=font)
