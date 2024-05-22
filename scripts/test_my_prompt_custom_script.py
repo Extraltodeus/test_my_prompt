@@ -73,7 +73,7 @@ class Script(scripts.Script):
                 continue
                 
             # Check for stopping_generation
-            if state.stopping_generation: # Unsure if this works, 
+            if state.stopping_generation:  
                 print("Stopping generation as requested.")
                 break
 
