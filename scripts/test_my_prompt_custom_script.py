@@ -66,7 +66,8 @@ class Script(scripts.Script):
         total_jobs = len(filtered_prompt_array) + 1 - skip_x_first 
         state.job_count = total_jobs
         print("total images :", total_jobs)
-
+        exluded_jobs = 0 # Used to fix job_no when excluded job is used
+        
         for g in range(len(prompt_array)+1):
             f = g-1
             if f >= 0 and f < skip_x_first:
@@ -85,6 +86,7 @@ class Script(scripts.Script):
                 
             # Check for excluded keywords
             if f >= 0 and prompt_array[f].strip() in excluded_keywords_list:
+                exluded_jobs = exluded_jobs + 1
                 print(f"Skipping job due to excluded keyword: {prompt_array[f].strip()}")
                 continue
                 
@@ -113,7 +115,7 @@ class Script(scripts.Script):
                 images.save_image(proc.images[0], p.outpath_samples, "", proc.seed, proc.prompt, opts.samples_format, info= proc.info, p=p)
                 
             # Update job number
-            state.job_no = g - skip_x_first + 1
+            state.job_no = (g - skip_x_first + 1) - exluded_jobs
             print(f"Job {state.job_no}/{state.job_count} completed.")
             state.job = f"{state.job_no + 1} out of {state.job_count}"
             
