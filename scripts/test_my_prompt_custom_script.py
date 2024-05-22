@@ -82,6 +82,8 @@ class Script(scripts.Script):
             if state.skipped:
                 print("Job skipped.")
                 state.skipped = False
+                if f >= 0 and prompt_array[f].strip() in excluded_keywords_list:
+                    exluded_jobs = exluded_jobs + 1
                 continue
                 
             # Check for excluded keywords
