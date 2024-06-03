@@ -23,12 +23,13 @@ class Script(scripts.Script):
     def ui(self, is_img2img):
         neg_pos = gr.Dropdown(label="Test negative or positive", choices=["Positive","Negative"], value="Positive")
         skip_x_first = gr.Slider(minimum=0, maximum=128, step=1, label='Skip X first words', value=0)
+        excluded_keywords = gr.Textbox(label="Excluded Keywords", lines=1, value="", placeholder="Exact keywords is advised.")
         separator = gr.Textbox(label="Separator used", lines=1, value=", ")
         grid_option = gr.Radio(choices=list(self.grid_options_mapping.keys()), label='Grid generation', value=self.default_grid_opt)
         font_size = gr.Slider(minimum=12, maximum=64, step=1, label='Font size', value=32)
-        return [neg_pos,skip_x_first,separator,grid_option,font_size]
+        return [neg_pos,skip_x_first,separator,grid_option,font_size,excluded_keywords]
 
-    def run(self, p,neg_pos,skip_x_first,separator,grid_option,font_size):
+    def run(self, p,neg_pos,skip_x_first,separator,grid_option,font_size,excluded_keywords):
         def write_on_image(img, msg):
             ix,iy = img.size
             draw = ImageDraw.Draw(img)
@@ -57,12 +58,40 @@ class Script(scripts.Script):
             initial_prompt =  p.negative_prompt
             prompt_array = p.negative_prompt
 
-        prompt_array = prompt_array.split(separator)
-        print("total images :", len(prompt_array))
+        prompt_array = [word for word in prompt_array.split(separator) if word.strip()]  # Remove empty prompts
+        excluded_keywords_list = [word.strip() for word in excluded_keywords.split(separator) if word.strip()] if excluded_keywords else []
+
+        # Job tracking setup
+        filtered_prompt_array = [word for word in prompt_array if word.strip() not in excluded_keywords_list]
+        total_jobs = len(filtered_prompt_array) + 1 - skip_x_first 
+        state.job_count = total_jobs
+        print("total images :", total_jobs)
+        exluded_jobs = 0 # Used to fix job_no when excluded job is used
+        
         for g in range(len(prompt_array)+1):
             f = g-1
             if f >= 0 and f < skip_x_first:
                 continue
+                
+            # Check for stopping_generation
+            if state.stopping_generation:  
+                print("Stopping generation as requested.")
+                break
+
+            # Check for skipped job
+            if state.skipped:
+                print("Job skipped.")
+                state.skipped = False
+                if f >= 0 and prompt_array[f].strip() in excluded_keywords_list:
+                    exluded_jobs = exluded_jobs + 1
+                continue
+                
+            # Check for excluded keywords
+            if f >= 0 and prompt_array[f].strip() in excluded_keywords_list:
+                exluded_jobs = exluded_jobs + 1
+                print(f"Skipping job due to excluded keyword: {prompt_array[f].strip()}")
+                continue
+                
             if f >= 0:
                 new_prompt =  separator.join([prompt_array[x] for x in range(len(prompt_array)) if x is not f])
             else:
@@ -86,6 +115,16 @@ class Script(scripts.Script):
 
             if opts.samples_save:
                 images.save_image(proc.images[0], p.outpath_samples, "", proc.seed, proc.prompt, opts.samples_format, info= proc.info, p=p)
+                
+            # Update job number
+            state.job_no = (g - skip_x_first + 1) - exluded_jobs
+            print(f"Job {state.job_no}/{state.job_count} completed.")
+            state.job = f"{state.job_no + 1} out of {state.job_count}"
+            
+            # Check for interruption
+            if state.interrupted:
+                print("Job interrupted. Ending process.")
+                break
 
         grid_flags = self.grid_options_mapping[grid_option]
         unwanted_grid_because_of_img_count = len(proc.images) < 2 and opts.grid_only_if_multiple
